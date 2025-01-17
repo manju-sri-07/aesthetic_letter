@@ -1,0 +1,238 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background: linear-gradient(to bottom right, #ff9a9e, #fad0c4 ffecd2); */
+    background: linear-gradient(to bottom right, #f9e1f0, #ffecd2); /* Soft pastel gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  .envelope img {
+    width: 300px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .envelope img:hover {
+    transform: scale(1.1);
+  }
+
+  .envelope {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+  }
+
+.envelope.open {
+    animation: openEnvelope 5s forwards;
+}
+
+  @keyframes openEnvelope {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1) rotate(-10deg);
+    }
+    100% {
+        transform: scale(0) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+/* Heart animation */
+.heart {
+    font-size: 60px;
+    position: absolute;
+    animation: popHeart 3s ease-in-out forwards; 
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+@keyframes popHeart {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -100%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -200%) scale(1);
+        opacity: 0;
+    }
+}
+
+.hidden {
+    display: none;
+  }
+
+.letter {
+    width: 80%;
+    height: 80%;
+    padding: 20px;
+    font-size:large;
+    font-weight: 500;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Align items from the top */
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    transform: scale(0);
+    transition: transform 0.5s ease-in-out;
+    font-family: 'Dancing Script', cursive; /* Calligraphy font for letter */
+    border: 1px solid #ff7f50;  /* Soft coral border */
+    animation: fadeIn 8s ease-in-out forwards;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Add soft shadow for depth */
+    background-color: #f1d7d7;
+}
+
+.letter.visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Letter fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.letter p {
+    text-shadow: 0 0 8px rgba(255, 182, 193, 0.7); /* Soft glowing effect */
+}
+
+.typewriter {
+    border-right: 2px solid black;
+    white-space: pre-wrap;  /* Preserve line breaks and wrap text */
+    word-wrap: break-word;  /* Ensure words break if they are too long */
+    overflow-wrap: break-word;  /* Additional word-breaking rule */
+    display: block;
+    animation: typing 15s steps(10, end), blink 1.5s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+
+/* Button Styling */
+button {
+    background: #ff7f50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: 'Dancing Script', cursive;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 5px 10px rgba(255, 105, 180, 0.4);
+}
+
+button:hover {
+    background: #ff6347; /* Slightly darker shade for hover effect */
+    box-shadow: 0 8px 15px rgba(255, 105, 180, 0.5);
+}
+
+#heart-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 5; /* Ensure hearts are visible above the letter */
+}
+
+.big-heart {
+    position: absolute;
+    bottom: 0;
+    font-size: 50px; /* Big hearts */
+    color: #ff69b4; /* Romantic pink */
+    animation: popBigHeart 4s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes popBigHeart {
+    0% {
+        transform: translateY(0) scale(0.8) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50vh) scale(1.2) rotate(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-120vh) scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Behind the letter */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px; /* Start above the viewport */
+    font-size: 600px;
+    color: white;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(110vh); /* Fall past the bottom of the screen */
+    }
+}
+
+/* @keyframes sway {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateX(-20px); 
+    }
+} */
+
